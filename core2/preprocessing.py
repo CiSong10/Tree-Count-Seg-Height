@@ -482,6 +482,15 @@ def rowColPolygons_svls(areaDf, areaShape, profile, filename, outline, fill, ker
 def generate_gaussian_density_map(shape: Tuple[int, int], points: List[Tuple[int, int]], kernel_size: int = 11, sigma: float = 3.5) -> np.ndarray:
     """
     Generates a Gaussian density map for given points.
+
+    Parameters:
+        shape: Tuple representing the dimensions of the output density map (rows, cols).
+        points: List of annotated positions, where each point is a tuple (row, col).
+        kernel_size: The fixed size of the Gaussian kernel, must be an odd number.
+        sigma: The standard deviation (sigma) of the Gaussian kernel.
+
+    Returns:
+        density_map: A 2D NumPy array representing the density map.
     """
     density_map = np.zeros(shape, dtype=np.float32)
 
