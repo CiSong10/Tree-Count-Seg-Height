@@ -48,7 +48,7 @@ class FrameInfo:
         Args:
             i: int
                 Starting location on first dimension (x axis).
-            y: int
+            j: int
                 Starting location on second dimension (y axis).
             patch_size: tuple(int, int)
                 Size of the patch.
@@ -66,7 +66,12 @@ class FrameInfo:
         we = np.expand_dims(we, axis=-1)
         den = self.density[i:i + img_size[0], j:j + img_size[1]]
         den = np.expand_dims(den, axis=-1)
-        comb_img = np.concatenate((im1, an, we, den), axis=-1)
+        try:
+            comb_img = np.concatenate((im1, an, we, den), axis=-1)
+        except ValueError:
+            # Return None if concatenation fails
+            return None
+            
         patch1[:img_size[0], :img_size[1], ] = comb_img # zero padding for empty area
         return patch1
 

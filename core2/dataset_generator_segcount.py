@@ -84,10 +84,12 @@ class DataGenerator():
         """
         patches1 = []
         
-        for i in range(BATCH_SIZE):
+        for _ in range(BATCH_SIZE):
             fn = np.random.choice(self.frame_list)
             frame = self.frames[fn]
             patch1 = frame.random_patch(self.patch_size, normalize)
+            if patch1 is None:
+                continue
             patches1.append(patch1)
             
         data1 = np.array(patches1) #256, 256, 8
