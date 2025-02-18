@@ -1,8 +1,8 @@
 __pycache__/
 test*
 training*
-input_images/
+input_images*
 models/
 logs/
-predictions/
+predictions*
 data*
